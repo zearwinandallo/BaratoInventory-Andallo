@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaratoInventory.Web", "Bara
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaratoInventory.Tests", "BaratoInventory.Tests\BaratoInventory.Tests.csproj", "{4BC4BB91-A3E9-0EA1-5717-B7482692BC63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D150542B-74C7-48B5-9E82-C727D379F279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{488B1D21-5CB7-4689-9001-6E8B9D6B4BC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{4BC4BB91-A3E9-0EA1-5717-B7482692BC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BC4BB91-A3E9-0EA1-5717-B7482692BC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BC4BB91-A3E9-0EA1-5717-B7482692BC63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D150542B-74C7-48B5-9E82-C727D379F279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D150542B-74C7-48B5-9E82-C727D379F279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D150542B-74C7-48B5-9E82-C727D379F279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D150542B-74C7-48B5-9E82-C727D379F279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488B1D21-5CB7-4689-9001-6E8B9D6B4BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488B1D21-5CB7-4689-9001-6E8B9D6B4BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488B1D21-5CB7-4689-9001-6E8B9D6B4BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488B1D21-5CB7-4689-9001-6E8B9D6B4BC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
