@@ -19,7 +19,7 @@ namespace Core.Entities
 
         public int Quantity { get; set; }
 
-        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     }
 }
