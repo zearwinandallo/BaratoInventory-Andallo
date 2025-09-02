@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaratoInventory.ServiceDefaults\BaratoInventory.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
