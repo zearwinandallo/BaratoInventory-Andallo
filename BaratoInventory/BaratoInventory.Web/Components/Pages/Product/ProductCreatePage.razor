@@ -2,44 +2,45 @@
 
 @using Core.Enums
 
-
-<h3>Create Product</h3>
+<h3 class="mb-4 text-primary">Create Product</h3>
 @rendermode InteractiveServer
 
-<EditForm FormName="CreateProduct"  OnValidSubmit="Submit" Model="ProductModel">
-     <div class="container">
-         <div class="mb-3">
+<EditForm FormName="CreateProduct" OnValidSubmit="Submit" Model="ProductModel">
+    <div class="container">
+        <div class="row g-3 mb-3">
             <div class="col-md-6">
-                <label> Product Name</label>
-                <InputText class="form-control" @bind-Value="ProductModel.Name"></InputText>
-                <ValidationMessage For="() => ProductModel.Name" />
+                <label class="form-label">Product Name</label>
+                <InputText class="form-control" @bind-Value="ProductModel.Name" />
+                <ValidationMessage For="() => ProductModel.Name" class="text-danger" />
             </div>
 
             <div class="col-md-6">
-                <label for="Category">Category</label>
-                <InputSelect id="Category" class="form-control" @bind-Value="ProductModel.Category">
+                <label class="form-label" for="Category">Category</label>
+                <InputSelect id="Category" class="form-select" @bind-Value="ProductModel.Category">
                     @foreach (var category in Enum.GetValues<ProductCategoryEnum>())
                     {
                         <option value="@category">@category</option>
                     }
                 </InputSelect>
-                <ValidationMessage For="@(() => ProductModel.Category)" />
+                <ValidationMessage For="@(() => ProductModel.Category)" class="text-danger" />
             </div>
 
             <div class="col-md-6">
-                <label for="Price">Price (₱)</label>
+                <label class="form-label" for="Price">Price (₱)</label>
                 <InputNumber id="Price" class="form-control" @bind-Value="ProductModel.Price" />
-                <ValidationMessage For="@(() => ProductModel.Price)" />
+                <ValidationMessage For="@(() => ProductModel.Price)" class="text-danger" />
             </div>
 
             <div class="col-md-6">
-                <label for="Quantity">Quantity</label>
+                <label class="form-label" for="Quantity">Quantity</label>
                 <InputNumber id="Quantity" class="form-control" @bind-Value="ProductModel.Quantity" />
-                <ValidationMessage For="@(() => ProductModel.Quantity)" />
+                <ValidationMessage For="@(() => ProductModel.Quantity)" class="text-danger" />
             </div>
-
         </div>
-        <button class="btn btn-secondary" href="/product">Cancel</button>
-        <button class="btn btn-primary" type="submit">Save</button>
-     </div>
+
+        <div class="d-flex gap-2 mt-3">
+            <a class="btn btn-secondary" href="/product">Cancel</a>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </div>
 </EditForm>

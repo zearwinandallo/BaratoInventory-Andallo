@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories
     {
         public Task<List<ProductModel>> GetProducts()
         {
-            return dbContext.Products.ToListAsync();
+            return dbContext.Products.OrderByDescending(p => p.LastUpdated).ToListAsync();
         }
 
         public async Task<ProductModel> GetProduct(Guid id)

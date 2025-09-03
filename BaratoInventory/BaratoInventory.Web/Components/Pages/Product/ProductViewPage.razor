@@ -1,0 +1,45 @@
+﻿@page "/product/view/{Id:guid}"
+@using Core.Entities
+@using Core.Enums
+
+<h3 class="mb-4">Product Details</h3>
+
+<div class="container">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Product Name:</strong>
+                    <p class="form-control-plaintext">@ProductModel.Name</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Category:</strong>
+                    <p class="form-control-plaintext">@ProductModel.Category</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Price (₱):</strong>
+                    <p class="form-control-plaintext">@($"₱{ProductModel.Price:N2}")</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Quantity:</strong>
+                    <p class="form-control-plaintext">@ProductModel.Quantity</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Last Updated:</strong>
+                    <p class="form-control-plaintext">
+                        @TimeZoneInfo.ConvertTimeFromUtc(ProductModel.LastUpdated,
+                                 TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time")).ToString("yyyy-MM-dd HH:mm")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" @onclick="GoBack">Back</button>
+</div>
