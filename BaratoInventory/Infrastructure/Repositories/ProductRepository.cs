@@ -12,11 +12,11 @@ namespace Infrastructure.Repositories
     public interface IProductRepository
     {
         Task<List<ProductModel>> GetProducts();
-        Task<ProductModel> GetProduct(int id);
+        Task<ProductModel> GetProduct(Guid id);
         Task UpdateProduct(ProductModel productModel);
         Task<ProductModel> CreateProduct(ProductModel productModel);
-        Task<bool> ProductModelExists(int id);
-        Task DeleteProduct(int id);
+        Task<bool> ProductModelExists(Guid id);
+        Task DeleteProduct(Guid id);
     }
     public class ProductRepository(AppDbContext dbContext) : IProductRepository
     {
@@ -25,7 +25,7 @@ namespace Infrastructure.Repositories
             return dbContext.Products.ToListAsync();
         }
 
-        public async Task<ProductModel> GetProduct(int id)
+        public async Task<ProductModel> GetProduct(Guid id)
         {
             var product = await dbContext.Products.FirstOrDefaultAsync(e => e.Id == id);
             if (product == null)
@@ -45,11 +45,11 @@ namespace Infrastructure.Repositories
             dbContext.Entry(productModel).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
         }
-        public Task<bool> ProductModelExists(int id)
+        public Task<bool> ProductModelExists(Guid id)
         {
             return dbContext.Products.AnyAsync(e => e.Id == id);
         }
-        public async Task DeleteProduct(int id)
+        public async Task DeleteProduct(Guid id)
         {
             var product = await dbContext.Products.FirstOrDefaultAsync(e => e.Id == id);
             if (product != null)

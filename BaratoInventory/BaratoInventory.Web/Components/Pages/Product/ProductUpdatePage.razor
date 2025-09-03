@@ -1,0 +1,43 @@
+﻿@page "/product/update/{Id:guid}"
+@using Core.Enums
+
+<h3>Update Product</h3>
+
+@rendermode InteractiveServer
+
+<EditForm OnValidSubmit="Submit" FormName="CreateProduct" Model="ProductModel">
+    <div class="container">
+        <div class="mb-3">
+            <div class="col-md-6">
+                <label> Product Name</label>
+                <InputText class="form-control" @bind-Value="ProductModel.Name"></InputText>
+                <ValidationMessage For="() => ProductModel.Name" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="Category">Category</label>
+                <InputSelect id="Category" class="form-control" @bind-Value="ProductModel.Category">
+                    @foreach (var category in Enum.GetValues<ProductCategoryEnum>())
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => ProductModel.Category)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="Price">Price (₱)</label>
+                <InputNumber id="Price" class="form-control" @bind-Value="ProductModel.Price" />
+                <ValidationMessage For="@(() => ProductModel.Price)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="Quantity">Quantity</label>
+                <InputNumber id="Quantity" class="form-control" @bind-Value="ProductModel.Quantity" />
+                <ValidationMessage For="@(() => ProductModel.Quantity)" />
+            </div>
+
+        </div>
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+</EditForm>

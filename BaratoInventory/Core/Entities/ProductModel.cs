@@ -9,7 +9,7 @@ namespace Core.Entities
 {
     public class ProductModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 
@@ -19,7 +19,6 @@ namespace Core.Entities
 
         public int Quantity { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-
+        public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
     }
 }

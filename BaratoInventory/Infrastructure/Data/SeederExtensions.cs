@@ -26,12 +26,12 @@ namespace Infrastructure.Data
             {
                 var now = DateTime.UtcNow;
                 db.Products.AddRange(
-                    new ProductModel { Name = "Smartphone", Category = ProductCategoryEnum.Electronics, Price = 24999.00, Quantity = 25, CreatedAt = now },  // ₱24,999
-                    new ProductModel { Name = "T-Shirt", Category = ProductCategoryEnum.Clothing, Price = 399.00, Quantity = 100, CreatedAt = now },        // ₱399
-                    new ProductModel { Name = "Coffee Beans", Category = ProductCategoryEnum.Food, Price = 299.00, Quantity = 50, CreatedAt = now },        // ₱299
-                    new ProductModel { Name = "Office Chair", Category = ProductCategoryEnum.Furniture, Price = 4999.00, Quantity = 10, CreatedAt = now },  // ₱4,999
-                    new ProductModel { Name = "Novel Book", Category = ProductCategoryEnum.Books, Price = 499.00, Quantity = 40, CreatedAt = now },         // ₱499
-                    new ProductModel { Name = "Gift Card", Category = ProductCategoryEnum.Other, Price = 1000.00, Quantity = 75, CreatedAt = now }          // ₱1,000
+                    new ProductModel { Name = "Smartphone", Category = ProductCategoryEnum.Electronics, Price = 24999.00, Quantity = 25, LastUpdated = now },  
+                    new ProductModel { Name = "T-Shirt", Category = ProductCategoryEnum.Clothing, Price = 399.00, Quantity = 100, LastUpdated = now },        
+                    new ProductModel { Name = "Coffee Beans", Category = ProductCategoryEnum.Food, Price = 299.00, Quantity = 50, LastUpdated = now },        
+                    new ProductModel { Name = "Office Chair", Category = ProductCategoryEnum.Furniture, Price = 4999.00, Quantity = 10, LastUpdated = now },  
+                    new ProductModel { Name = "Novel Book", Category = ProductCategoryEnum.Books, Price = 499.00, Quantity = 40, LastUpdated = now },         
+                    new ProductModel { Name = "Gift Card", Category = ProductCategoryEnum.Other, Price = 1000.00, Quantity = 75, LastUpdated = now }          
                 );
                 db.SaveChanges();
             }

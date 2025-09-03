@@ -11,11 +11,11 @@ namespace Core.Services
     public interface IProductService
     {
         Task<List<ProductModel>> GetProducts();
-        Task<ProductModel> GetProduct(int id);
+        Task<ProductModel> GetProduct(Guid id);
         Task UpdateProduct(ProductModel productModel);
         Task<ProductModel> CreateProduct(ProductModel productModel);
-        Task<bool> ProductModelExists(int id);
-        Task DeleteProduct(int id);
+        Task<bool> ProductModelExists(Guid id);
+        Task DeleteProduct(Guid id);
     }
     public class ProductService : IProductService
     {
@@ -25,19 +25,20 @@ namespace Core.Services
         {
             _productRepository = productRepository;
         }
-        public Task<ProductModel> CreateProduct(ProductModel productModel)
+        public async Task<ProductModel> CreateProduct(ProductModel productModel)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.CreateProduct(productModel);
+            return product;
         }
 
-        public Task DeleteProduct(int id)
+        public async Task DeleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            await _productRepository.DeleteProduct(id);
         }
 
-        public Task<ProductModel> GetProduct(int id)
+        public Task<ProductModel> GetProduct(Guid id)
         {
-            throw new NotImplementedException();
+            return _productRepository.GetProduct(id);
         }
 
         public async Task<List<ProductModel>> GetProducts()
@@ -45,14 +46,14 @@ namespace Core.Services
             return await _productRepository.GetProducts();
         }
 
-        public Task<bool> ProductModelExists(int id)
+        public Task<bool> ProductModelExists(Guid id)
         {
-            throw new NotImplementedException();
+            return _productRepository.ProductModelExists(id);
         }
 
-        public Task UpdateProduct(ProductModel productModel)
+        public async Task UpdateProduct(ProductModel productModel)
         {
-            throw new NotImplementedException();
+            await _productRepository.UpdateProduct(productModel);
         }
     }
 }

@@ -12,6 +12,7 @@
 } *@
 else
 {
+    <a class="btn btn-primary" href="/product/create">Create</a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,7 +20,7 @@ else
                 <th>Category</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Created At</th>
+                <th>Last Updated</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -31,13 +32,27 @@ else
                     <td>@product.Category</td>
                     <td>@($"₱{product.Price:N2}")</td>
                     <td>@product.Quantity</td>
-                    <td>@product.CreatedAt.ToShortDateString()</td>
+                    <td>
+                        @TimeZoneInfo.ConvertTimeFromUtc(product.LastUpdated,
+                        TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time")).ToShortDateString()
+                    </td>
                     <td>
                         <a class="btn btn-secondary btn-sm" href="/product/update/@product.Id">Update</a>
-                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <button class="btn btn-danger" @onclick="()=> { DeleteID = product.Id; Modal.Open();}">Delete</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
+    <AppModal @ref="Modal">
+         <Title>Notification</Title>
+          <Body>
+            This action cannot be undone. Delete this product?
+          </Body>
+           <Footer>
+              <button type="button" class="btn btn-primary" style="width:80px" @onclick="HandleDelete">Yes</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Modal.Close()">Cancel</button>
+            </Footer>
+           </AppModal>
 }
