@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 using Infrastructure.Repositories;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace Core.Services
 {
@@ -20,20 +22,27 @@ namespace Core.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IDistributedCache _cacheService;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(
+            IProductRepository productRepository,
+            IDistributedCache cacheService
+            )
         {
             _productRepository = productRepository;
+            _cacheService = cacheService;
         }
         public async Task<ProductModel> CreateProduct(ProductModel productModel)
         {
             var product = await _productRepository.CreateProduct(productModel);
+            await _cacheService.RemoveAsync("list_products");
             return product;
         }
 
         public async Task DeleteProduct(Guid id)
         {
             await _productRepository.DeleteProduct(id);
+            await _cacheService.RemoveAsync("list_products");
         }
 
         public Task<ProductModel> GetProduct(Guid id)
@@ -43,7 +52,15 @@ namespace Core.Services
 
         public async Task<List<ProductModel>> GetProducts()
         {
-            return await _productRepository.GetProducts();
+            var cacheValue = await _cacheService.GetStringAsync("list_products");
+            if (!string.IsNullOrEmpty(cacheValue))
+            {
+                return JsonConvert.DeserializeObject<List<ProductModel>>(cacheValue);
+            }
+
+            var products = await _productRepository.GetProducts();
+            await _cacheService.SetStringAsync("list_products", JsonConvert.SerializeObject(products));
+            return products;
         }
 
         public Task<bool> ProductModelExists(Guid id)
@@ -54,6 +71,7 @@ namespace Core.Services
         public async Task UpdateProduct(ProductModel productModel)
         {
             await _productRepository.UpdateProduct(productModel);
+            await _cacheService.RemoveAsync("list_products");
         }
     }
 }
