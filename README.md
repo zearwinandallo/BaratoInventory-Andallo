@@ -22,6 +22,8 @@ This assumes a `docker-compose.yml` (or `docker-compose.yaml`) is present in you
 
 ## Web View
 
+<img width="1092" height="397" alt="image" src="https://github.com/user-attachments/assets/5e435d1e-72ac-434e-82ce-f3e81540e000" />
+
 <img width="1892" height="746" alt="image" src="https://github.com/user-attachments/assets/db8b37c2-b34a-4bc7-b84d-83d1b814c459" />
 
 <img width="1886" height="802" alt="image" src="https://github.com/user-attachments/assets/a356d312-a002-4368-b87c-477e949b7907" />
